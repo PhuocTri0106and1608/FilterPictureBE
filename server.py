@@ -31,9 +31,9 @@ def predict():
         fig = plt.figure()
         plt.imshow(style_image)
         plt.axis('off')
-        plt.savefig('/opt/render/project/src/result.png')
+        plt.savefig('./opt/render/project/src/result.png')
         plt.close(fig)
-        return send_file('/opt/render/project/src/result.png', mimetype='image/png')
+        return send_file('./opt/render/project/src/result.png', mimetype='image/png')
 if __name__ == "__main__":
     app.run(debug=True)
     
