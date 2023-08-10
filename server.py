@@ -1,6 +1,6 @@
 from flask import Flask, request, send_file
 import os
-import monet_model
+from monet_model import model
 # import vangogh_model
 # import ukiyoe_model
 # import cezanne_model
@@ -15,17 +15,18 @@ app = Flask(__name__)
 def predict():
     f = request.files['upload']
     if f.filename != "":
-        uploaded_file_path = "datasets/images/"+f.filename
-        f.save(uploaded_file_path)
-        command = "python monet_model.py"
-        try:
-            subprocess.run(command, shell=True, check=True)
-            print("Command executed successfully.")
-        except subprocess.CalledProcessError as e:
-            print(f"Command execution failed: {e}")
-        filename_fake = f.filename[:-4] + "_fake" + f.filename[-4:]
-        style_image_path = "results/style_monet_pretrained/test_latest/images/" + filename_fake
-        style_image = plt.imread(style_image_path)
+        style_image = model(f)
+        # uploaded_file_path = "datasets/images/"+f.filename
+        # f.save(uploaded_file_path)
+        # command = "python monet_model.py"
+        # try:
+        #     subprocess.run(command, shell=True, check=True)
+        #     print("Command executed successfully.")
+        # except subprocess.CalledProcessError as e:
+        #     print(f"Command execution failed: {e}")
+        # filename_fake = f.filename[:-4] + "_fake" + f.filename[-4:]
+        # style_image_path = "results/style_monet_pretrained/test_latest/images/" + filename_fake
+        # style_image = plt.imread(style_image_path)
         # os.remove(uploaded_file_path)
         fig = plt.figure()
         plt.imshow(style_image)
