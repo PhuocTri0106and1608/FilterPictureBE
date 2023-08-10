@@ -1,11 +1,12 @@
 import subprocess
 import matplotlib.pyplot as plt
+import os
 
 def model(image):
     uploaded_file_path = "datasets/images/"+image.filename
     image.save(uploaded_file_path)
     command = "python test.py --dataroot datasets\images --name style_monet_pretrained --model test --no_dropout --gpu_ids -1"
-
+    os.remove(uploaded_file_path)
     try:
         subprocess.run(command, shell=True, check=True)
         filename_fake = image.filename[:-4] + "_fake.png" 
