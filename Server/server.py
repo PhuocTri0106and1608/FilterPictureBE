@@ -6,7 +6,7 @@ import monet_model
 # import cezanne_model
 import subprocess
 import matplotlib.pyplot as plt
-# from waitress import serve
+from waitress import serve
 
 app = Flask(__name__)
 
@@ -34,7 +34,8 @@ def predict():
         plt.close(fig)
         return send_file('result.png', mimetype='image/png')
 
+def create_app():
+    return app
 
-
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+#     app.run(debug=True)
