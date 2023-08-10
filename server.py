@@ -26,16 +26,16 @@ def predict():
         filename_fake = f.filename[:-4] + "_fake" + f.filename[-4:]
         style_image_path = "results/style_monet_pretrained/test_latest/images/" + filename_fake
         style_image = plt.imread(style_image_path)
-        os.remove(uploaded_file_path)
+        # os.remove(uploaded_file_path)
         fig = plt.figure()
         plt.imshow(style_image)
         plt.axis('off')
         plt.savefig('result.png')
         plt.close(fig)
         return send_file('result.png', mimetype='image/png')
-
+if __name__ == "__main__":
+    app.run(debug=True)
+    
 def create_app():
     return app
 
-# if __name__ == "__main__":
-#     app.run(debug=True)

@@ -9,3 +9,4 @@ tensorflow
 Flask
 python-dotenv 
 waitress
+matplotlib
