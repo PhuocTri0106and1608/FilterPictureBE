@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, jsonify, url_for
 import os
 from monet_model import model
 # import vangogh_model
@@ -16,26 +16,16 @@ def predict():
     f = request.files['upload']
     if f.filename != "":
         model(f)
-        # uploaded_file_path = "datasets/images/"+f.filename
-        # f.save(uploaded_file_path)
-        # command = "python monet_model.py"
-        # try:
-        #     subprocess.run(command, shell=True, check=True)
-        #     print("Command executed successfully.")
-        # except subprocess.CalledProcessError as e:
-        #     print(f"Command execution failed: {e}")
-        # filename_fake = f.filename[:-4] + "_fake" + f.filename[-4:]
-        # style_image_path = "results/style_monet_pretrained/test_latest/images/" + filename_fake
-        # style_image = plt.imread(style_image_path)
-        # os.remove(uploaded_file_path)
         style_image_path = "results/style_monet_pretrained/test_latest/images/image_fake.png"
-        style_image = plt.imread(style_image_path)
-        fig = plt.figure()
-        plt.imshow(style_image)
-        plt.axis('off')
-        plt.savefig('result.png')
-        plt.close(fig)
-        return send_file('result.png', mimetype='image/png')
+        style_image_url = url_for('static', filename=style_image_path, _external=True)
+        return jsonify({'image_url': style_image_url})
+        # style_image = plt.imread(style_image_path)
+        # fig = plt.figure()
+        # plt.imshow(style_image)
+        # plt.axis('off')
+        # plt.savefig('result.png')
+        # plt.close(fig)
+        # return send_file('result.png', mimetype='image/png')
 if __name__ == "__main__":
     app.run(debug=True)
     
