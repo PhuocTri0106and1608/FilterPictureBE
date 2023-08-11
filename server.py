@@ -17,15 +17,10 @@ def predict():
     if f.filename != "":
         model(f)
         style_image_path = "results/style_monet_pretrained/test_latest/images/image_fake.png"
-        style_image_url = url_for('static', filename=style_image_path, _external=True)
+        protocol = request.headers.get('X-Forwarded-For', request.scheme)
+        style_image_url = url_for('static', filename=style_image_path, _external=True, _scheme=protocol)
         return jsonify({'image_url': style_image_url})
-        # style_image = plt.imread(style_image_path)
-        # fig = plt.figure()
-        # plt.imshow(style_image)
-        # plt.axis('off')
-        # plt.savefig('result.png')
-        # plt.close(fig)
-        # return send_file('result.png', mimetype='image/png')
+    
 if __name__ == "__main__":
     app.run(debug=True)
     
