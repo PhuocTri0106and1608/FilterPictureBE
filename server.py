@@ -15,7 +15,7 @@ app = Flask(__name__)
 def predict():
     f = request.files['upload']
     if f.filename != "":
-        style_image_path = model(f)
+        model(f)
         # uploaded_file_path = "datasets/images/"+f.filename
         # f.save(uploaded_file_path)
         # command = "python monet_model.py"
@@ -28,13 +28,14 @@ def predict():
         # style_image_path = "results/style_monet_pretrained/test_latest/images/" + filename_fake
         # style_image = plt.imread(style_image_path)
         # os.remove(uploaded_file_path)
+        style_image_path = "results/style_monet_pretrained/test_latest/images/image_fake.png"
         style_image = plt.imread(style_image_path)
         fig = plt.figure()
-        # plt.imshow(style_image)
-        # plt.axis('off')
-        plt.savefig('./opt/render/project/src/result.png')
+        plt.imshow(style_image)
+        plt.axis('off')
+        plt.savefig('result.png')
         plt.close(fig)
-        return send_file('./opt/render/project/src/result.png', mimetype='image/png')
+        return send_file('result.png', mimetype='image/png')
 if __name__ == "__main__":
     app.run(debug=True)
     
