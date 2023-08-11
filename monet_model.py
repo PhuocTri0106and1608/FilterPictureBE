@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import os
 
-def monet(image):
+def monet_style(image):
     image.filename = "image.png"
     img = Image.open(image)
     img.save("datasets/images/image.png", 'PNG')
