@@ -3,17 +3,13 @@ import matplotlib.pyplot as plt
 from PIL import Image
 import os
 
-def model(image):
-    # uploaded_file_path = "./opt/render/project/src/datasets/images/"+image.filename
+def monet(image):
     image.filename = "image.png"
     img = Image.open(image)
-    # uploaded_file_path = "datasets/images/image.png"
     img.save("datasets/images/image.png", 'PNG')
-    # image.save(uploaded_file_path)
     command = "python test.py --dataroot datasets/images --name style_monet_pretrained --model test --no_dropout --gpu_ids -1"
     try:
         subprocess.run(command, shell=True, check=True)
         print("Command executed successfully.")
-        # os.remove(uploaded_file_path)
     except subprocess.CalledProcessError as e:
         print(f"Command execution failed: {e}")
