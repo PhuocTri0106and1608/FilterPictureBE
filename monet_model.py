@@ -6,8 +6,10 @@ import os
 def model(image):
     # uploaded_file_path = "./opt/render/project/src/datasets/images/"+image.filename
     image.filename = "image.png"
-    uploaded_file_path = "./opt/render/project/src/datasets/images/image.png"
-    image.save(uploaded_file_path)
+    img = Image.open(image)
+    # uploaded_file_path = "datasets/images/image.png"
+    img.save("datasets/images/image.png", 'PNG')
+    # image.save(uploaded_file_path)
     command = "python test.py --dataroot datasets/images --name style_monet_pretrained --model test --no_dropout --gpu_ids -1"
     try:
         subprocess.run(command, shell=True, check=True)
