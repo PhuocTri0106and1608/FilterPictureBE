@@ -11,9 +11,8 @@ def model(image):
     try:
         subprocess.run(command, shell=True, check=True)
         style_image_path = "./opt/render/project/src/results/style_monet_pretrained/test_latest/images/image_fake.png"
-        style_image = plt.imread(style_image_path)
         print("Command executed successfully.")
         # os.remove(uploaded_file_path)
-        return style_image
+        return style_image_path
     except subprocess.CalledProcessError as e:
         print(f"Command execution failed: {e}")
