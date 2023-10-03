@@ -1,7 +1,5 @@
 import subprocess
-import matplotlib.pyplot as plt
 from PIL import Image
-import os
 
 def ukiyoe_style(image):
     image.filename = "image.png"
