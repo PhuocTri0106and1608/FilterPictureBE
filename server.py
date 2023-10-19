@@ -21,7 +21,6 @@ def Monet():
             monet_style(f)
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
-
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
             style_monet_image_path = 'results/style_monet_pretrained/test_latest/images/' +  fake_file_name
@@ -51,7 +50,6 @@ def Vangogh():
             vangogh_style(f)
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
-
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
             style_vangogh_image_path = 'results/style_vangogh_pretrained/test_latest/images/' +  fake_file_name
@@ -81,7 +79,6 @@ def Cezanne():
             cezanne_style(f)
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
-
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
             style_cezanne_image_path = 'results/style_cezanne_pretrained/test_latest/images/' +  fake_file_name
@@ -111,7 +108,6 @@ def Ukiyoe():
             ukiyoe_style(f)
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
-
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
             style_ukiyoe_image_path = 'results/style_ukiyoe_pretrained/test_latest/images/' +  fake_file_name

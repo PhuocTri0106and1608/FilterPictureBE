@@ -8,6 +8,7 @@ def monet_style(image):
     destination = 'datasets/images/' + file_name
     img.save(destination, 'PNG')
     command = "python test.py --dataroot datasets/images --name style_monet_pretrained --model test --no_dropout --gpu_ids -1"
+    
     try:
         subprocess.run(command, shell=True, check=True)
         print("Command executed successfully.")
