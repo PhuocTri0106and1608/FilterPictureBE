@@ -23,11 +23,11 @@ def Monet():
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
-            style_monet_image_path = 'results/style_monet_pretrained/test_latest/images/' +  fake_file_name
+            style_monet_image_path = "results/style_monet_pretrained/test_latest/images/" +  fake_file_name
 
             img_monet = Image.open(style_monet_image_path)
 
-            static_path = 'static/results/style_monet_pretrained/test_latest/images/' + fake_file_name
+            static_path = "static/results/style_monet_pretrained/test_latest/images/" + fake_file_name
 
             img_monet.save(static_path, 'PNG')
 
@@ -52,11 +52,11 @@ def Vangogh():
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
-            style_vangogh_image_path = 'results/style_vangogh_pretrained/test_latest/images/' +  fake_file_name
+            style_vangogh_image_path = "results/style_vangogh_pretrained/test_latest/images/" +  fake_file_name
 
             img_vangogh = Image.open(style_vangogh_image_path)
 
-            static_path = 'static/results/style_vangogh_pretrained/test_latest/images/' + fake_file_name
+            static_path = "static/results/style_vangogh_pretrained/test_latest/images/" + fake_file_name
 
             img_vangogh.save(static_path, 'PNG')
 
@@ -81,11 +81,11 @@ def Cezanne():
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
-            style_cezanne_image_path = 'results/style_cezanne_pretrained/test_latest/images/' +  fake_file_name
+            style_cezanne_image_path = "results/style_cezanne_pretrained/test_latest/images/" +  fake_file_name
 
             img_cezanne = Image.open(style_cezanne_image_path)
 
-            static_path = 'static/results/style_cezanne_pretrained/test_latest/images/' + fake_file_name
+            static_path = "static/results/style_cezanne_pretrained/test_latest/images/" + fake_file_name
 
             img_cezanne.save(static_path, 'PNG')
 
@@ -110,11 +110,11 @@ def Ukiyoe():
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
 
-            style_ukiyoe_image_path = 'results/style_ukiyoe_pretrained/test_latest/images/' +  fake_file_name
+            style_ukiyoe_image_path = "results/style_ukiyoe_pretrained/test_latest/images/" +  fake_file_name
 
             img_ukiyoe = Image.open(style_ukiyoe_image_path)
 
-            static_path = 'static/results/style_ukiyoe_pretrained/test_latest/images/' + fake_file_name
+            static_path = "static/results/style_ukiyoe_pretrained/test_latest/images/" + fake_file_name
 
             img_ukiyoe.save(static_path, 'PNG')
 

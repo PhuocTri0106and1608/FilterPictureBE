@@ -1,11 +1,10 @@
 import subprocess
 from PIL import Image
-import os
 
 def vangogh_style(image):
     img = Image.open(image)
     file_name = image.filename.rsplit(".", 1)[0] + ".png"
-    destination = 'datasets/images/' + file_name
+    destination = "datasets/images/" + file_name
     img.save(destination, 'PNG')
     command = "python test.py --dataroot datasets/images --name style_vangogh_pretrained --model test --no_dropout --gpu_ids -1"
     
