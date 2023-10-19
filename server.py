@@ -27,9 +27,7 @@ def Monet():
 
             img_monet = Image.open(style_monet_image_path)
 
-            static_path = "static/results/style_monet_pretrained/test_latest/images/" + fake_file_name
-
-            img_monet.save(static_path, 'PNG')
+            img_monet.save("static/results/style_monet_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
 
             style_monet_image_url = url_for('static', filename=style_monet_image_path, _external=True)
 
@@ -56,9 +54,7 @@ def Vangogh():
 
             img_vangogh = Image.open(style_vangogh_image_path)
 
-            static_path = "static/results/style_vangogh_pretrained/test_latest/images/" + fake_file_name
-
-            img_vangogh.save(static_path, 'PNG')
+            img_vangogh.save("static/results/style_vangogh_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
 
             style_vangogh_image_url = url_for('static', filename=style_vangogh_image_path, _external=True)
 
@@ -85,9 +81,7 @@ def Cezanne():
 
             img_cezanne = Image.open(style_cezanne_image_path)
 
-            static_path = "static/results/style_cezanne_pretrained/test_latest/images/" + fake_file_name
-
-            img_cezanne.save(static_path, 'PNG')
+            img_cezanne.save("static/results/style_cezanne_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
 
             style_cezanne_image_url = url_for('static', filename=style_cezanne_image_path, _external=True)
 
@@ -114,9 +108,7 @@ def Ukiyoe():
 
             img_ukiyoe = Image.open(style_ukiyoe_image_path)
 
-            static_path = "static/results/style_ukiyoe_pretrained/test_latest/images/" + fake_file_name
-
-            img_ukiyoe.save(static_path, 'PNG')
+            img_ukiyoe.save("static/results/style_ukiyoe_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
 
             style_ukiyoe_image_url = url_for('static', filename=style_ukiyoe_image_path, _external=True)
 
