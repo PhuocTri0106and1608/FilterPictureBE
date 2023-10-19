@@ -1,5 +1,6 @@
 import subprocess
 from PIL import Image
+import os
 
 def monet_style(image):
     img = Image.open(image)
@@ -10,5 +11,6 @@ def monet_style(image):
     try:
         subprocess.run(command, shell=True, check=True)
         print("Command executed successfully.")
+        os.remove(os.path.join('datasets/images/', file_name))
     except subprocess.CalledProcessError as e:
         print(f"Command execution failed: {e}")

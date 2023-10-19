@@ -22,6 +22,7 @@ def Monet():
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
 
             style_monet_image_path = "results/style_monet_pretrained/test_latest/images/" +  fake_file_name
 
@@ -31,6 +32,8 @@ def Monet():
 
             style_monet_image_url = url_for('static', filename=style_monet_image_path, _external=True)
 
+            os.remove(os.path.join('results/style_monet_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_monet_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_monet_image_url
@@ -49,6 +52,7 @@ def Vangogh():
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
 
             style_vangogh_image_path = "results/style_vangogh_pretrained/test_latest/images/" +  fake_file_name
 
@@ -58,6 +62,8 @@ def Vangogh():
 
             style_vangogh_image_url = url_for('static', filename=style_vangogh_image_path, _external=True)
 
+            os.remove(os.path.join('results/style_vangogh_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_vangogh_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_vangogh_image_url
@@ -76,6 +82,7 @@ def Cezanne():
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
 
             style_cezanne_image_path = "results/style_cezanne_pretrained/test_latest/images/" +  fake_file_name
 
@@ -85,6 +92,8 @@ def Cezanne():
 
             style_cezanne_image_url = url_for('static', filename=style_cezanne_image_path, _external=True)
 
+            os.remove(os.path.join('results/style_cezanne_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_cezanne_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_cezanne_image_url
@@ -103,6 +112,7 @@ def Ukiyoe():
 
             file_name = f.filename.rsplit(".", 1)[0] + ".png"
             fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
 
             style_ukiyoe_image_path = "results/style_ukiyoe_pretrained/test_latest/images/" +  fake_file_name
 
@@ -112,6 +122,8 @@ def Ukiyoe():
 
             style_ukiyoe_image_url = url_for('static', filename=style_ukiyoe_image_path, _external=True)
 
+            os.remove(os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_ukiyoe_image_url
