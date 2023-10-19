@@ -6,51 +6,12 @@ from ukiyoe_model import ukiyoe_style
 from cezanne_model import cezanne_style
 from PIL import Image
 from waitress import serve
+import os
 
 app = Flask(__name__)
 
 cors = CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST"], "headers": ["Content-Type", "Authorization"]}})
 
-@app.route("/all", methods=['POST'])
-def all():
-    try:
-        f = request.files['upload_all']
-        if f.filename != "":
-            monet_style(f)
-            vangogh_style(f)
-            cezanne_style(f)
-            ukiyoe_style(f)
-
-            style_monet_image_path = "results/style_monet_pretrained/test_latest/images/image_fake.png"
-            style_vangogh_image_path = "results/style_vangogh_pretrained/test_latest/images/image_fake.png"
-            style_cezanne_image_path = "results/style_cezanne_pretrained/test_latest/images/image_fake.png"
-            style_ukiyoe_image_path = "results/style_ukiyoe_pretrained/test_latest/images/image_fake.png"
-
-            img_monet = Image.open(style_monet_image_path)
-            img_vangogh = Image.open(style_vangogh_image_path)
-            img_cezanne = Image.open(style_cezanne_image_path)
-            img_ukiyoe = Image.open(style_ukiyoe_image_path)
-
-            img_monet.save("static/results/style_monet_pretrained/test_latest/images/image_fake.png", 'PNG')
-            img_vangogh.save("static/results/style_vangogh_pretrained/test_latest/images/image_fake.png", 'PNG')
-            img_cezanne.save("static/results/style_cezanne_pretrained/test_latest/images/image_fake.png", 'PNG')
-            img_ukiyoe.save("static/results/style_ukiyoe_pretrained/test_latest/images/image_fake.png", 'PNG')
-
-            style_monet_image_url = url_for('static', filename=style_monet_image_path, _external=True)
-            style_vangogh_image_url = url_for('static', filename=style_vangogh_image_path, _external=True)
-            style_cezanne_image_url = url_for('static', filename=style_cezanne_image_path, _external=True)
-            style_ukiyoe_image_url = url_for('static', filename=style_ukiyoe_image_path, _external=True)
-
-            return jsonify({
-                'image_monet_url': style_monet_image_url,
-                'image_vangogh_url': style_vangogh_image_url,
-                'image_cezanne_url': style_cezanne_image_url,
-                'image_ukiyoe_url': style_ukiyoe_image_url
-            })
-    except Exception as e:
-        return jsonify({
-            'error': str(e)
-        })
     
 @app.route("/Monet", methods=['POST'])
 def Monet():
@@ -59,13 +20,21 @@ def Monet():
         if f.filename != "":
             monet_style(f)
 
-            style_monet_image_path = "results/style_monet_pretrained/test_latest/images/image_fake.png"
+            file_name = os.path.splitext(f.filename)[0] + ".png"
+
+            fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
+
+            style_monet_image_path = os.path.join('results/style_monet_pretrained/test_latest/images/', fake_file_name)
 
             img_monet = Image.open(style_monet_image_path)
 
-            img_monet.save("static/results/style_monet_pretrained/test_latest/images/image_fake.png", 'PNG')
+            img_monet.save(os.path.join('static/results/style_monet_pretrained/test_latest/images/', fake_file_name), 'PNG')
 
             style_monet_image_url = url_for('static', filename=style_monet_image_path, _external=True)
+
+            os.remove(os.path.join('results/style_monet_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_monet_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_monet_image_url
@@ -82,13 +51,21 @@ def Vangogh():
         if f.filename != "":
             vangogh_style(f)
 
-            style_vangogh_image_path = "results/style_vangogh_pretrained/test_latest/images/image_fake.png"
+            file_name = os.path.splitext(f.filename)[0] + ".png"
+
+            fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
+
+            style_vangogh_image_path = os.path.join('results/style_vangogh_pretrained/test_latest/images/', fake_file_name)
 
             img_vangogh = Image.open(style_vangogh_image_path)
 
-            img_vangogh.save("static/results/style_vangogh_pretrained/test_latest/images/image_fake.png", 'PNG')
+            img_vangogh.save(os.path.join('static/results/style_vangogh_pretrained/test_latest/images/', fake_file_name), 'PNG')
 
             style_vangogh_image_url = url_for('static', filename=style_vangogh_image_path, _external=True)
+
+            os.remove(os.path.join('results/style_vangogh_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_vangogh_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_vangogh_image_url
@@ -105,13 +82,21 @@ def Cezanne():
         if f.filename != "":
             cezanne_style(f)
 
-            style_cezanne_image_path = "results/style_cezanne_pretrained/test_latest/images/image_fake.png"
+            file_name = os.path.splitext(f.filename)[0] + ".png"
+
+            fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
+
+            style_cezanne_image_path = os.path.join('results/style_cezanne_pretrained/test_latest/images/', fake_file_name)
 
             img_cezanne = Image.open(style_cezanne_image_path)
 
-            img_cezanne.save("static/results/style_cezanne_pretrained/test_latest/images/image_fake.png", 'PNG')
+            img_cezanne.save(os.path.join('static/results/style_cezanne_pretrained/test_latest/images/', fake_file_name), 'PNG')
 
             style_cezanne_image_url = url_for('static', filename=style_cezanne_image_path, _external=True)
+
+            os.remove(os.path.join('results/style_cezanne_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_cezanne_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_cezanne_image_url
@@ -128,13 +113,21 @@ def Ukiyoe():
         if f.filename != "":
             ukiyoe_style(f)
 
-            style_ukiyoe_image_path = "results/style_ukiyoe_pretrained/test_latest/images/image_fake.png"
+            file_name = os.path.splitext(f.filename)[0] + ".png"
+
+            fake_file_name = f"{file_name.split('.')[0]}_fake.{file_name.split('.')[1]}"
+            real_file_name = f"{file_name.split('.')[0]}_real.{file_name.split('.')[1]}"
+
+            style_ukiyoe_image_path = os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', fake_file_name)
 
             img_ukiyoe = Image.open(style_ukiyoe_image_path)
 
-            img_ukiyoe.save("static/results/style_ukiyoe_pretrained/test_latest/images/image_fake.png", 'PNG')
+            img_ukiyoe.save(os.path.join('static/results/style_ukiyoe_pretrained/test_latest/images/', fake_file_name), 'PNG')
 
             style_ukiyoe_image_url = url_for('static', filename=style_ukiyoe_image_path, _external=True)
+
+            os.remove(os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', fake_file_name))
+            os.remove(os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', real_file_name))
 
             return jsonify({
                 'image_url': style_ukiyoe_image_url
