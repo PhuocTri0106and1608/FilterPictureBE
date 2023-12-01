@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify, url_for
-from flask_cors import CORS
 from monet_model import monet_style
 from vangogh_model import vangogh_style
 from ukiyoe_model import ukiyoe_style
@@ -7,11 +6,10 @@ from cezanne_model import cezanne_style
 from PIL import Image
 from waitress import serve
 import os
+from io import BytesIO
+import base64
 
 app = Flask(__name__)
-
-cors = CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST"], "headers": ["Content-Type", "Authorization"]}})
-
     
 @app.route("/Monet", methods=['POST'])
 def Monet():
@@ -28,9 +26,11 @@ def Monet():
 
             img_monet = Image.open(style_monet_image_path)
 
-            img_monet.save("static/results/style_monet_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
+            buffered = BytesIO()
+            img_monet.save(buffered, format="PNG")
+            img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-            style_monet_image_url = url_for('static', filename=style_monet_image_path, _external=True)
+            style_monet_image_url = f"data:image/png;base64,{img_str}"
 
             os.remove(os.path.join('results/style_monet_pretrained/test_latest/images/', fake_file_name))
             os.remove(os.path.join('results/style_monet_pretrained/test_latest/images/', real_file_name))
@@ -58,9 +58,11 @@ def Vangogh():
 
             img_vangogh = Image.open(style_vangogh_image_path)
 
-            img_vangogh.save("static/results/style_vangogh_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
+            buffered = BytesIO()
+            img_vangogh.save(buffered, format="PNG")
+            img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-            style_vangogh_image_url = url_for('static', filename=style_vangogh_image_path, _external=True)
+            style_vangogh_image_url = f"data:image/png;base64,{img_str}"
 
             os.remove(os.path.join('results/style_vangogh_pretrained/test_latest/images/', fake_file_name))
             os.remove(os.path.join('results/style_vangogh_pretrained/test_latest/images/', real_file_name))
@@ -88,9 +90,11 @@ def Cezanne():
 
             img_cezanne = Image.open(style_cezanne_image_path)
 
-            img_cezanne.save("static/results/style_cezanne_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
+            buffered = BytesIO()
+            img_cezanne.save(buffered, format="PNG")
+            img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-            style_cezanne_image_url = url_for('static', filename=style_cezanne_image_path, _external=True)
+            style_cezanne_image_url = f"data:image/png;base64,{img_str}"
 
             os.remove(os.path.join('results/style_cezanne_pretrained/test_latest/images/', fake_file_name))
             os.remove(os.path.join('results/style_cezanne_pretrained/test_latest/images/', real_file_name))
@@ -118,9 +122,11 @@ def Ukiyoe():
 
             img_ukiyoe = Image.open(style_ukiyoe_image_path)
 
-            img_ukiyoe.save("static/results/style_ukiyoe_pretrained/test_latest/images/{}".format(fake_file_name), 'PNG')
+            buffered = BytesIO()
+            img_ukiyoe.save(buffered, format="PNG")
+            img_str = base64.b64encode(buffered.getvalue()).decode('utf-8')
 
-            style_ukiyoe_image_url = url_for('static', filename=style_ukiyoe_image_path, _external=True)
+            style_ukiyoe_image_url = f"data:image/png;base64,{img_str}"
 
             os.remove(os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', fake_file_name))
             os.remove(os.path.join('results/style_ukiyoe_pretrained/test_latest/images/', real_file_name))
