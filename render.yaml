@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: flask-app
+    runtime: python
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: 1
+    scaling:
+      minInstances: 1
+      maxInstances: 3
+      targetMemoryPercent: 60
+      targetCPUPercent: 60
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -w 4 -b 0.0.0.0:$PORT app:app
+    healthCheckPath: /  # Đảm bảo rằng health check được thực hiện trên địa chỉ chính của ứng dụng
+    envVars:
+      - key: GUNICORN_CMD_ARGS
+        value: "--timeout 70"  # Tăng timeout để đảm bảo xử lý request đầu tiên không quá nhanh
+      - key: WEB_CONCURRENCY
+        value: 4  # Tăng số lượng worker process của Gunicorn để xử lý request đồng thời
+
+databases:
+  - # Định nghĩa cấu hình của database (nếu cần)
+
+envVarGroups:
+  - # Định nghĩa các group environment variables (nếu cần)
